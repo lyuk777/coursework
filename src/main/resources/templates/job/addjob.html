@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body style="background-image: url(/img/background.jpeg)">
+<div th:insert="common/navbar :: head"></div>
+<div th:insert="common/info-box :: info"></div>
+<div class="w3-container main-small">
+    <h1 class="w3-text-theme-dark">Создать новое задание</h1>
+
+    <hr>
+    <form th:action="@{/jobs/addjob}" method="post" class="w3-container">
+        <label class="w3-text-theme-dark w3-xlarge">Город</label>
+        <input class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" type="text" name="city">
+
+        <label class="w3-text-theme-dark w3-xlarge">Категория </label>
+        <select class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" name="category">
+            <option></option>
+            <option>Ремонт и строительство</option>
+            <option>Уборка и помощь по хозяйству</option>
+            <option>Красота и здоровье</option>
+            <option>Репититоры и обучение</option>
+            <option>Грузоперевозки</option>
+            <option>Ремонт транспорта</option>
+            <option>Дизайн</option>
+        </select>
+        <label class="w3-text-theme-dark w3-xlarge">Заголовок </label>
+        <input class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" type="text" name="headline">
+
+        <label class="w3-text-theme-dark w3-xlarge">Описание </label>
+        <textarea class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" rows="8" name="description"></textarea>
+
+        <label class="w3-text-theme-dark w3-xlarge">Сумма </label>
+        <input class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" type="text" name="sum">
+        <hr>
+        <button class="w3-btn w3-theme w3-xlarge w3-round-large w3-padding w3-margin" type="submit">Создать</button>
+    </form>
+</div>
+</body>
+</html>

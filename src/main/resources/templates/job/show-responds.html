@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body style="background-image: url(/img/background.jpeg)">
+<div th:insert="common/navbar :: head"></div>
+
+<div class="w3-container main-small">
+    <div class="w3-display-container">
+        <h1 class="w3-text-theme-dark" th:text="${job.getHeadline()}"></h1>
+    </div>
+    <hr>
+    <div th:if="${isPerforming == false}">
+        <div class="w3-display-container">
+            <h2 class="w3-text-theme-dark">Выбрать исполнителя</h2>
+        </div>
+        <div class="w3-container">
+            <div th:each="user : ${users}" class="w3-container w3-card w3-white w3-margin-bottom">
+                <div class="w3-opacity">
+                    <h3 th:text="${user.getUsername()}" class="w3-text-theme-dark"></h3>
+                </div>
+                <h6 th:text="${user.getSurname()}" class="w3-text-theme-dark"></h6>
+                <h6 th:text="${user.getName}" class="w3-text-theme-dark"></h6>
+                <h6 th:text="${user.getPatronymic}" class="w3-text-theme-dark"></h6>
+                <h6 th:text="${user.getPhoneNumber}" class="w3-text-theme-dark"></h6>
+                <h6 th:text="${user.getEmail}" class="w3-text-theme-dark"></h6>
+                <h6 th:text="${user.getAbout}" class="w3-text-theme-dark"></h6>
+                <hr>
+                <form th:action="@{'/perform/accept/'+ ${job.getId()} +'/' + ${user.getId()}}" method="post" >
+                    <input type="submit" value="Принять" class="w3-btn w3-round-large w3-large w3-padding w3-margin w3-border w3-border-theme" style=" width: 30%"/>
+                </form>
+            </div>
+        </div>
+        <div th:if="${users.size()==0}">
+            <div class="w3-margin">
+                <h2>Никто не откликнулся</h2>
+            </div>
+        </div>
+    </div>
+    <div th:if="${isPerforming == true}">
+        <div th:if="${isDone == false}" class="w3-display-container">
+            <h2 class="w3-text-theme-dark">Работа выполняется</h2>
+        </div>
+        <div th:if="${isDone == true}" class="w3-display-container">
+            <h2 class="w3-text-theme-dark">Работа выполнена</h2>
+        </div>
+        <div class="w3-container w3-card w3-white w3-margin-bottom" >
+            <div class="w3-display-container">
+                <h3 class="w3-text-theme-dark">Исполнитель: </h3>
+            </div>
+            <div class="w3-opacity">
+                <h3 th:text="${userPerformingJob.getUsername()}" class="w3-text-theme-dark"></h3>
+            </div>
+            <h6 th:text="${userPerformingJob.getSurname()}" class="w3-text-theme-dark"></h6>
+            <h6 th:text="${userPerformingJob.getName}" class="w3-text-theme-dark"></h6>
+            <h6 th:text="${userPerformingJob.getPatronymic}" class="w3-text-theme-dark"></h6>
+            <h6 th:text="${userPerformingJob.getPhoneNumber}" class="w3-text-theme-dark"></h6>
+            <h6 th:text="${userPerformingJob.getEmail}" class="w3-text-theme-dark"></h6>
+            <h6 th:text="${userPerformingJob.getAbout}" class="w3-text-theme-dark"></h6>
+            <hr>
+            <div th:if="${isDone == false}">
+                <form th:action="@{'/perform/complete/'+ ${job.getId()} + '/' + ${userPerformingJob.getId()}}" method="post" >
+                    <input type="submit" value="Закончить" class="w3-btn w3-round-large w3-large w3-padding w3-margin w3-border w3-border-theme" style=" width: 30%"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

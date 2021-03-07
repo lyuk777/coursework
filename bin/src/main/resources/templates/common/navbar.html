@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+<div th:fragment="head">
+    <div class="w3-bar w3-xlarge" style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,39,1) 29%, rgba(0,212,255,1) 100%);">
+        <a class="w3-bar-item w3-button w3-text-theme-light" th:href="@{'/main/'}">Главная</a>
+        <a class="w3-bar-item w3-button w3-text-theme-light" th:href="@{'/jobs/'}">Найти задания</a>
+        <a class="w3-bar-item w3-button w3-text-theme-light" th:href="@{'/user/'}" >Мой кабинет</a>
+        <form th:action="@{/logout}" method="post" class="w3-right" >
+            <input type="submit" value="Выйти" class="w3-bar-item w3-button w3-text-theme-light"/>
+        </form>
+    </div>
+    <div style="background: #0a272f; height: 5px"></div>
+</div>
+</body>
+</html>

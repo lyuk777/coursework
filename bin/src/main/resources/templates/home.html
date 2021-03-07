@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<body>
+<div class="w3-container gradient">
+    <div th:insert="common/info-box :: info"></div>
+    <div class="w3-bar w3-xlarge" style="margin-left: 9vw; width: 82vw;">
+        <a class="w3-bar-item w3-button w3-text-theme-light w3-right w3-border w3-round-large" href="/login">Войти</a>
+    </div>
+    <div class="w3-row">
+        <div class="w3-col l6">
+            <div class="w3-text-theme-light" style="margin-top: 9vw; margin-left: 8vw;">
+                <h1 class="w3-xxxlarge w3-padding ">Регистрация</h1>
+                <h2 class="w3-padding">
+                    JobSeeker позволяет пользователю быть одновременно заказчиком одних услуг и исполнителем других услуг. Для всех зарегистрированных пользователей сервис абсолютно бесплатный.
+
+                </h2>
+            </div>
+        </div>
+
+        <div class="w3-col l6">
+            <div class="w3-container w3-card w3-round-large w3-theme-xlight" style="margin-top: 7vh; margin-left: 7vw; margin-right: 7vw; height: max-content; margin-bottom: 22.8vh;">
+                <form th:action="@{/registration}" method="post" class="w3-container w3-padding-64" style="height: inherit; margin-right: 2vw;">
+                    <label class="w3-text-theme-dark w3-large w3-margin">Логин</label>
+                    <input type="text" pattern="[a-zA-Z][a-zA-Z0-9]+" maxlength="32" class="w3-input w3-border w3-round w3-margin w3-text-theme w3-xlarge w3-hover-border-theme" name="username" required>
+
+                    <label class="w3-text-theme-dark w3-large w3-margin">Email</label>
+                    <input type="email" class="w3-input w3-border w3-round w3-margin w3-text-theme w3-xlarge w3-hover-border-theme" name="email" required>
+
+                    <label class="w3-text-theme-dark w3-large w3-margin">Пароль</label>
+                    <input type="password" maxlength="32" class="w3-input w3-border w3-round w3-margin w3-text-theme w3-xlarge w3-hover-border-theme" name="password" required>
+
+
+                    <input type="submit" value="Зарегистрироваться" class="w3-btn w3-round w3-theme-d1 w3-margin w3-padding-32" style="width: 100%;"></input>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

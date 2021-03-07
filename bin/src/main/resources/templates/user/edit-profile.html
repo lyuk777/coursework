@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body style="background-image: url(/img/background.jpeg)">
+<div th:insert="common/navbar :: head"></div>
+
+<div class="w3-container main-small">
+    <h1 class="w3-text-theme-dark">Редактировать профиль</h1>
+
+    <hr>
+    <form th:action="@{/user/edit}" method="post" class="w3-container">
+        <label class="w3-text-theme-dark w3-xlarge">Фамилия</label>
+        <input class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" type="text" th:value="${surname}" name="surname" style="margin-bottom: 10px">
+
+        <label class="w3-text-theme-dark w3-xlarge">Имя</label>
+        <input class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" type="text" th:value="${name}" name="name" style="margin-bottom: 10px">
+
+        <label class="w3-text-theme-dark w3-xlarge">Отчество</label>
+        <input class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" type="text" th:value="${patronymic} "name="patronymic" style="margin-bottom: 10px">
+
+        <label class="w3-text-theme-dark w3-xlarge">Город</label>
+        <input class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" type="text" th:value="${city}" name="city" style="margin-bottom: 10px">
+
+        <label class="w3-text-theme-dark w3-xlarge">Номер телефона</label>
+        <input class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" type="text" th:value="${phone}" name="phone" style="margin-bottom: 10px">
+
+        <label class="w3-text-theme-dark w3-xlarge">О себе</label>
+        <textarea class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" rows="4" th:text="${about}" name="about"></textarea>
+
+
+
+        <hr>
+        <button class="w3-btn w3-theme w3-xlarge w3-round-large w3-padding w3-margin" type="submit">Редактировать</button>
+    </form>
+</div>
+</body>
+</html>

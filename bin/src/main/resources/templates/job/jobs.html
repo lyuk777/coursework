@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body style="background-image: url(/img/background.jpeg)">
+<div th:insert="common/navbar :: head"></div>
+
+<div class="w3-container main-small">
+    <div class="w3-display-container">
+        <h1 class="w3-text-theme-dark">Найти задание</h1>
+    </div>
+    <hr>
+    <form th:action="@{/jobs/search}" method="get" class="w3-container">
+        <label class="w3-text-theme-dark w3-xlarge">Поиск по категории</label>
+        <select class="w3-input w3-text-theme w3-large w3-border w3-round w3-hover-border-theme" name="category">
+            <option></option>
+            <option>Ремонт и строительство</option>
+            <option>Уборка и помощь по хозяйству</option>
+            <option>Красота и здоровье</option>
+            <option>Репититоры и обучение</option>
+            <option>Грузоперевозки</option>
+            <option>Ремонт транспорта</option>
+            <option>Дизайн</option>
+        </select>
+        <button class="w3-btn w3-theme w3-xlarge w3-round-large w3-padding w3-margin" type="submit">Найти</button>
+    </form>
+    <label class="w3-text-theme-dark w3-xlarge" th:text="${category}"></label>
+    <hr>
+    <div class="w3-container">
+        <div th:each="jobAndCreator : ${jobsAndCreators}" class="w3-container w3-card w3-white w3-margin-bottom">
+            <div class="w3-opacity" style="white-space: nowrap;">
+                <h3 th:text="${jobAndCreator.key.getHeadline()}" style="color: darkblue; display: inline-block;"></h3>
+                <h6 th:text="${jobAndCreator.key.getSum()} + ' ₽'" class="w3-right" style="display: inline-block; font-size: 25px; margin-right: 50px; margin-top: 20px; background-color: antiquewhite"></h6>
+
+            </div>
+                <h4 th:text="${jobAndCreator.key.getCategory()}" class="w3-text-theme-dark"></h4>
+                <h6 th:text="${jobAndCreator.key.getDescription()}" class="w3-text-theme-dark"></h6>
+                <div style="white-space: nowrap;" >
+                    <i class="fa fa-map-marker" style="font-size:20px; color:red; display: inline-block;" aria-hidden="true"></i>
+                    <h6 th:text="${jobAndCreator.key.getCity()}" class="w3-text-theme-dark" style="display: inline-block;"></h6>
+                    <i class="fa fa-user-o" style="font-size:20px; display: inline-block; margin-left: 15px" aria-hidden="true"></i>
+                    <h6 th:text="${jobAndCreator.value}" class="w3-text-theme-dark" style="display: inline-block;"></h6>
+                </div>
+
+            <form th:action="@{'/jobs/showjob/' + ${jobAndCreator.key.getId()}}" method="get" class="w3-right" style="margin-top: 10px">
+                    <input type="submit" value="Просмотреть" class="w3-btn w3-round-large w3-large w3-padding w3-margin w3-border w3-border-theme" style=" width: 80%"/>
+            </form>
+            <hr>
+        </div>
+    </div>
+
+    <div th:if="${jobsAndCreators.size()==0}">
+        <div class="w3-margin">
+            <h2>Актуальные задания отсутствуют</h2>
+        </div>
+    </div>
+    <div th:if="${!jobsAndCreators.isEmpty()}">
+        <div th:insert="common/pagination :: pages" class="w3-margin"></div>
+    </div>
+</div>
+</div>
+</body>
+</html>

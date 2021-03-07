@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body style="background-image: url(/img/background.jpeg)">
+<div th:insert="common/navbar :: head"></div>
+
+<div class="w3-container main-small">
+    <div class="w3-display-container">
+        <h1 class="w3-text-theme-dark">Задание</h1>
+    </div>
+    <hr>
+    <div class="w3-container w3-card w3-white w3-margin-bottom">
+            <div class="w3-opacity">
+                <h3 th:text="${job.getHeadline()}" class="w3-text-theme-dark"></h3>
+            </div>
+            <h4 th:text="${job.getCategory()}" class="w3-text-theme-dark"></h4>
+            <h6 th:text="${job.getCity()}" class="w3-text-theme-dark"></h6>
+            <h6 th:text="${job.getDescription() }" class="w3-text-theme-dark"></h6>
+            <h6 th:text="${job.getSum() + ' ₽'}" class="w3-text-teal"></h6>
+            <h6 th:text="${creator}" class="w3-text-teal"></h6>
+            <hr>
+        <div th:if="${isResponded }">
+            <h4 class="w3-text-theme-dark">Вы откликнулись на задание</h4>
+        </div>
+
+        <div th:if="${job.getUser().getId() == user.getId() }">
+            <h4 class="w3-text-theme-dark">Это ваше задание</h4>
+        </div>
+
+        <div th:if="${job.getUser().getId() != user.getId() && !isResponded }">
+            <form th:action="@{'/perform/respond/'+ ${job.getId()}}" method="post" >
+                <input type="submit" value="Откликнуться" class="w3-btn w3-round-large w3-large w3-padding w3-margin w3-border w3-border-theme" style=" width: 30%"/>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

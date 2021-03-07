@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body style="background-image: url(/img/background.jpeg)">
+<div th:insert="common/navbar :: head"></div>
+<div th:insert="common/info-box :: info"></div>
+
+<div class="w3-container main-small">
+    <div class="w3-display-container">
+        <h1 class="w3-text-theme-dark">Мои задания</h1>
+    </div>
+    <hr>
+    <div class="w3-container">
+        <div th:each="job : ${myjobs}" class="w3-container w3-card w3-white w3-margin-bottom">
+            <div class="w3-opacity">
+                <h3 th:text="${job.getHeadline()}" class="w3-text-theme-dark"></h3>
+            </div>
+            <h4 th:text="${job.getCategory()}" class="w3-text-theme-dark"></h4>
+            <h6 th:text="${job.getCity()}" class="w3-text-theme-dark"></h6>
+            <h6 th:text="${job.getDescription()}" class="w3-text-theme-dark"></h6>
+            <h6 th:text="${job.getSum()} + ' ₽'" class="w3-text-teal"></h6>
+            <form th:action="@{'/jobs/edit/'+ ${job.getId()}}" method="get" style="display: inline-block">
+                <input type="submit" value="Редактировать" class="w3-btn w3-round-large w3-large w3-padding w3-margin w3-border w3-border-theme" style=" width: 160px"/>
+            </form>
+            <form th:action="@{'/jobs/delete/'+ ${job.getId()}}" method="post" style="display: inline-block">
+                <input type="submit" value="Удалить" class="w3-btn w3-round-large w3-large w3-padding w3-margin w3-border w3-border-theme" style=" width: 160px"/>
+            </form>
+            <form th:action="@{'/perform/show-responds/'+ ${job.getId()}}" method="get" style="display: inline-block">
+                <input type="submit" value="Просмотреть" class="w3-btn w3-round-large w3-large w3-padding w3-margin w3-border w3-border-theme" style="width: 160px "/>
+            </form>
+            <hr>
+        </div>
+    </div>
+
+    <div th:if="${myjobs.size()==0}">
+        <div class="w3-margin">
+            <h2>У вас пока нет заданий</h2>
+        </div>
+    </div>
+    <div th:if="${!myjobs.isEmpty()}">
+        <div th:insert="common/pagination :: pages" class="w3-margin"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body style="background-image: url(/img/background.jpeg)">
+<div th:insert="common/navbar :: head"></div>
+<div class="w3-container w3-content w3-row" style="margin-top: 20px; max-width:1400px; ">
+    <div class="w3-half w3-teal" style="height: 810px">
+        <!-- Profile -->
+        <div class="w3-card" style="height: 810px">
+                <div class="w3-container">
+                <h2 class="w3-center" style="margin-top: 50px">Мой профиль</h2>
+                <p class="w3-center"><img src="/img/avatar.png" class="w3-circle" style="width:30%" alt="Avatar"></p>
+
+                <div style="white-space: nowrap;" >
+                    <p class="w3-text-theme-dark w3-xlarge" style=" display: inline-block">Логин:  </p>
+                    <p th:text="${username}" class="w3-text-theme-dark w3-xlarge" style=" display: inline-block"></p>
+                </div>
+
+                <div style="white-space: nowrap;">
+                    <p class="w3-text-theme-dark w3-xlarge" style=" display: inline-block">Email:  </p>
+                    <p th:text="${email}" class="w3-text-theme-dark w3-xlarge" style=" display: inline-block"></p>
+                </div>
+
+                <div th:if="${surname != null}" style="white-space: nowrap;">
+                    <p class="w3-text-theme-dark w3-xlarge" style=" display: inline-block">ФИО:  </p>
+                    <p th:text="${surname}" class="w3-text-theme-dark w3-xlarge" style="display: inline-block"></p>
+                    <p th:text="${name}" class="w3-text-theme-dark w3-xlarge" style="display: inline-block"></p>
+                    <p th:text="${patronymic}" class="w3-text-theme-dark w3-xlarge" style="display: inline-block"></p>
+                </div>
+
+                <div th:if="${city != null}" style="white-space: nowrap;">
+                    <p class="w3-text-theme-dark w3-xlarge" style=" display: inline-block">Город:  </p>
+                    <p th:text="${city}" class="w3-text-theme-dark w3-xlarge" style="display: inline-block"></p>
+                </div>
+
+                <div th:if="${phone != null}" style="white-space: nowrap;">
+                    <p class="w3-text-theme-dark w3-xlarge" style=" display: inline-block">Номер телефона:  </p>
+                    <p th:text="${phone}" class="w3-text-theme-dark w3-xlarge" style="display: inline-block"></p>
+                </div>
+
+
+                <div th:if="${about != null}" style="white-space: nowrap;">
+                    <p class="w3-text-theme-dark w3-xlarge" style=" display: inline-block">О себе:  </p>
+                    <p th:text="${about}" class="w3-text-theme-dark w3-xlarge" style="display: inline-block"></p>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <!-- End Left Column -->
+    </div>
+
+
+    <div class="w3-half w3-black" style="height: 810px">
+        <div class="w3-card w3-center">
+            <div class="w3-container">
+                <h2 class="w3-center" style="margin-top: 50px">Действия</h2>
+                <form th:action="@{/jobs/addjob}" method="get" style="margin-top: 200px">
+                    <input type="submit" value="Создать задание" class="w3-button w3-black w3-block w3-hover-blue-grey w3-padding-16" style=" font-size: 20px" />
+                </form>
+                <form th:action="@{/jobs/myjob}" method="get" >
+                    <input type="submit" value="Мои задания" class="w3-button w3-black w3-block w3-hover-teal w3-padding-16" style=" font-size: 20px"/>
+                </form>
+                <form th:action="@{/user/edit}" method="get" >
+                    <input type="submit" value="Редактировать профиль" class="w3-button w3-black w3-block w3-hover-brown w3-padding-16" style=" font-size: 20px"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

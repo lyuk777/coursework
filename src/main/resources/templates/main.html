@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+    <body style="background-image: url(/img/background.jpeg)">
+<div th:insert="common/navbar :: head"></div>
+<!-- Header -->
+<header class="w3-container w3-center" style="padding:128px 16px; background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,39,1) 29%, rgba(0,212,255,1) 100%);">
+    <h1 class="w3-margin w3-jumbo">Job Seeker</h1>
+    <p class="w3-xlarge">Made by Lyukshin Egor</p>
+    <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" th:href="@{'/jobs/'}">Начать работу</a>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-32 w3-container">
+    <div class="w3-content">
+        <div class="w3-twothird">
+            <h1>О сервисе</h1>
+            <h5 class="w3-padding-16">Основное назначение  приложения заключается в предоставлении
+                пользователю возможности быстрого и удобного поиска интересующих его вакансий или их размещения.
+                Пользователь может быть одновременно заказчиком одних услуг, размещая свои задания, и исполнителем других,
+                откликаясь на существующие задания.</h5>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
